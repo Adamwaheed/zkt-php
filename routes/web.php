@@ -13,10 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->middleware('verified');
+Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
+
+
+Route::resource('attendances', 'AttendanceController')->middleware('verified');
+
+Route::resource('readers', 'ReaderController')->middleware('verified');
+
+
+Route::resource('systemLogs', 'SystemLogController')->middleware('verified');
+
+Route::resource('users', 'UserController')->middleware('verified');
