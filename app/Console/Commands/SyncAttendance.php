@@ -75,10 +75,10 @@ class SyncAttendance extends Command
                         $attendance->status = $log['Status'];
                         $attendance->reader_id = $reader['id'];
                         if ($attendance->save()) {
-                            $this->readerSync('New Data Synced from reader =>' . $log['PIN']);
+//                            $this->readerSync('New Data Synced from reader =>' . $log['PIN']);
                         }
                     } else {
-                        $this->readerSync('the Record is already exist =>' . $log['PIN'] . ' and  ' . $log['DateTime']);
+//                        $this->readerSync('the Record is already exist =>' . $log['PIN'] . ' and  ' . $log['DateTime']);
                     }
                 }
             }

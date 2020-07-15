@@ -44,21 +44,33 @@ class PushAttendance extends Command
 
         $client = new \GuzzleHttp\Client();
         $response = $client->post(
-            'http://3022661891d9.ngrok.io/api/sync_attendance',
+            'https://ec59f29ecd14.ngrok.io/api/sync_attendance',
             array(
                 'form_params' => $attendance
             )
         );
 
+        $this->info(count($attendance) . ' is selected to push');
+
         $data = json_decode($response->getBody(), true);
+
+        $this->info(count($data) . ' response we got');
         foreach ($data as $item) {
             $attendance = Attendance::find($item['id']);
+
+            $this->info(($attendance ? 'we get ' :' we dont get' ) .' matching records for ' .$item['id'] );
             $attendance->sync = $item['sync'];
             if ($item['sync']) {
-                $this->pushAttendance('New Attendance Record has been Pushed to the cloud');
+                $this->info('the record is synced to cloud system');
+//                $this->pushAttendance('New Attendance Record has been Pushed to the cloud');
             } else {
-                $this->pushAttendance('Failed to Push Attendance to cloud due to' . $item['message']);
+                $this->warn('the record is did synced to cloud system');
+//                $this->pushAttendance('Failed to Push Attendance to cloud due to' . $item['message']);
             }
+
+            $this->info('the response is ' .  $item['message']);
+
+            $this->line("-------------------------------------------------");
             $attendance->message = $item['message'];
             $attendance->employee_name = $item['employee_name'];
             $attendance->employee_number = $item['employee_number'];
