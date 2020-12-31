@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +27,6 @@ Route::resource('readers', 'ReaderController')->middleware('verified');
 Route::resource('systemLogs', 'SystemLogController')->middleware('verified');
 
 Route::resource('users', 'UserController')->middleware('verified');
+
+
+

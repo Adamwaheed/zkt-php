@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use TADPHP\TADFactory;
+use TADPHP\TAD;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('why', function () {
+
+
+    $tad = (new TADFactory(['ip'=>'192.168.0.4', 'com_key'=>0,'port'=>'4370']))->get_instance();
+
+
+//    $new = new \App\ZK\ZKLib('192.168.0.4');
+//    $new->connect();
+//
+//
+//    foreach ($new->getAttendances() as $attendance) {
+//       dd($attendance);
+//    }
+
+//    $zk = new \App\ZK\ZKLibrary('192.168.0.4',4370);
+//    $zk->connect();
+//   return $zk->getAttendance();
 });
+
+
+
+
+
+
+

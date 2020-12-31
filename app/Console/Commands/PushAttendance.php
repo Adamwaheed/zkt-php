@@ -44,7 +44,7 @@ class PushAttendance extends Command
 
         $client = new \GuzzleHttp\Client();
         $response = $client->post(
-            'https://ec59f29ecd14.ngrok.io/api/sync_attendance',
+            'https://c09ce18bb34e.ngrok.io/api/sync_attendance',
             array(
                 'form_params' => $attendance
             )
